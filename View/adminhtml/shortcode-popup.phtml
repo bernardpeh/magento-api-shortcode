@@ -1,0 +1,76 @@
+<script type="text/javascript">
+
+function addMageTag(){
+	
+	var mage_pid = jQuery('#mage_pid').val();
+	var mage_custom = jQuery('#mage_custom').is(':checked');
+	var mage_template = jQuery('#mage_template').val();
+
+	mage_custom = (mage_custom) ? 1 : 0;
+
+	if(mage_pid == '' || mage_template == ''){
+		alert('Enter all fields please.');
+		return;
+	}
+	else {
+		window.send_to_editor("[mage pid=\""+mage_pid+"\" custom=\""+mage_custom+"\" template=\""+mage_template+"\"]");
+	}
+}
+
+function checkCustom() {
+	if (jQuery('#mage_custom').is(':checked')) {
+		options = "<option value='my_product.phtml'>my_product</option>"; 
+		jQuery('#mage_template').html(options);
+	}
+	else {
+		defaultTemplate();
+	}
+
+}
+
+function defaultTemplate() {
+	 options = "<option value='product.phtml'>Product</option>"+
+    "<option value='name.phtml'>Name</option>"+
+    "<option value='price.phtml'>Price</option>"+
+    "<option value='image.phtml'>Image</option>";
+	jQuery('#mage_template').html(options);
+}
+
+function showMageForm() {
+	var x = jQuery("#add_magento_shortcode").offset().left;
+	var y = jQuery("#add_magento_shortcode").offset().top;
+	jQuery("#mageForm").css({
+		position: "absolute",
+		top: y+10+'px',
+		left:x+15+'px',
+		zindex: 10,
+		}).show();
+}
+// load defaultTemplate first
+jQuery(function() {
+ 	defaultTemplate();
+});
+</script>
+
+		
+<div id="mageForm" style="display:none;padding:5px;background-color:white;border:grey solid 1px;">
+	<table>
+		<tr>
+		<td>Magento ProductID or SKU</td>
+		<td><input id="mage_pid" type="text" /></td>
+		</tr>
+		<tr>
+		<td>Use Custom Template?</td>
+		<td><input type="checkbox" id="mage_custom" onclick="checkCustom()"/></td>
+		</tr>
+		<tr>
+		<td>Select Template</td>
+		<td><select id="mage_template" /></select></td>
+		</tr>
+	</table>
+		<hr />
+		<input type="button" class="button-primary" value="Insert short tag" onclick="addMageTag();jQuery('#mageForm').toggle();"/>&nbsp;&nbsp;<a class="button" href="#" onclick="jQuery('#mageForm').toggle();">Cancel</a>
+	</div>
+</div>
+
+

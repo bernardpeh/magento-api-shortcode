@@ -1,0 +1,66 @@
+<div class="wrap">
+	<h2>Magento API Settings</h2>
+
+	<form method="post" action="options.php">
+		<?php settings_fields('magento-api'); ?>
+
+		<table class="form-table">
+			<tr valign="top">
+				<th scope="row">
+					<label>Magento API URL</label>
+				</th>
+				<td>
+					<input name="magento-api-url" value="<?php echo get_option('magento-api-url'); ?>" type="text" class="regular-text" />
+
+					<span class="description">
+						For eg. http://yourdomain.ext/api/?wsdl
+					</span>
+				</td>
+			</tr>
+
+			<tr valign="top">
+				<th scope="row">
+					<label>Cache Time</label>
+				</th>
+				<td>
+					<input name="magento-caching-time" value="<?php echo get_option('magento-caching-time'); ?>" type="text" class="regular-text" />
+
+					<span class="description">
+						For eg. 3600 for 1 hr. Leaving it empty means no caching. Caching will be influenced by your caching plugin. See http://codex.wordpress.org/Class_Reference/WP_Object_Cache
+					</span>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row">
+					<label>CDN Settings</label>
+				</th>
+				<td>
+					<input name="magento-cdn" value="<?php echo get_option('magento-cdn'); ?>" type="text" class="regular-text" />
+
+					<span class="description">
+						CDN domain of the magento installation eg. http://cdn.yourdomain.com. Leaving this field empty means no cdn.
+					</span>
+				</td>
+			</tr>
+
+
+			<tr valign="top">
+				<th scope="row">
+					<label>Username (API User)</label>
+				</th>
+				<td>
+					<input name="magento-api-username" value="<?php form_option('magento-api-username'); ?>" type="text" class="regular-text" />
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row">
+					<label>Password (API Key)</label>
+				</th>
+				<td>
+					<input name="magento-api-passwd" value="<?php form_option('magento-api-passwd'); ?>" type="password" class="regular-text" />
+				</td>
+			</tr>
+		</table>
+		<?php submit_button(); ?>
+	</form>
+</div>
